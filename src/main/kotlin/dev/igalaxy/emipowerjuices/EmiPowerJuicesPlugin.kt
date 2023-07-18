@@ -11,7 +11,9 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.nbt.NbtList
+import net.minecraft.potion.Potions
 import net.minecraft.recipe.Ingredient
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.Identifier
 import org.quiltmc.qkl.library.nbt.set
 import org.quiltmc.qkl.library.text.buildText
@@ -27,6 +29,7 @@ class EmiPowerJuicesPlugin : EmiPlugin {
     override fun register(registry: EmiRegistry) {
         registry.addCategory(JUICER_CATEGORY)
         registry.addWorkstation(JUICER_CATEGORY, JUICER_ICON)
+        registry.addRecipeHandler(ScreenHandlerType.HOPPER, PowerJuicesJuicerRecipeHandler())
 
         fun potionEffect(id: Int, duration: Int = -1, amplifier: Int = -1): NbtCompound {
             val nbt = NbtCompound()
@@ -147,7 +150,7 @@ class EmiPowerJuicesPlugin : EmiPlugin {
             potionEffect(8, 1200, 1),
             potionEffect(23, amplifier = 3)
         ), listOf(
-            EmiIngredient.of(Ingredient.ofItems(Items.APPLE), 3)
+            EmiIngredient.of(Ingredient.ofItems(Items.APPLE), 2)
         ))
         registerJuice("shiny_apple_juice", "Shiny Apple Juice", 16761924, listOf(
             potionEffect(1, 2400),
