@@ -22,6 +22,10 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	maven {
+		name = "TerraformersMC"
+		url = uri("https://maven.terraformersmc.com/")
+	}
 }
 
 // All the dependencies are declared at gradle/libs.version.toml and referenced with "libs.<id>"
@@ -53,6 +57,9 @@ dependencies {
 	// modImplementation(libs.bundles.qfapi) // If you wish to use the deprecated Fabric API modules
 
 	modImplementation(libs.qkl)
+
+	modCompileOnly("dev.emi:emi-fabric:1.0.11+1.20.1:api")
+	modLocalRuntime("dev.emi:emi-fabric:1.0.11+1.20.1")
 }
 
 tasks {
